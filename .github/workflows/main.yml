@@ -72,7 +72,7 @@ amM5FNUCgYEA4r2cxhVeqP/FG35XfjyDZAkF6ZJjloDw7b7WoSsh5t4lgEpe7A/H
         env:
           HOST: 98.81.126.172
         run: |
-          ssh -o StrictHostKeyChecking=no -i ec2_key.pem ec2-user@$HOST << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i ec2_key.pem ubuntu@$HOST << 'EOF'
             docker pull woa2000/docker-web-app:latest
             docker stop nginx-container || true
             docker rm nginx-container || true
