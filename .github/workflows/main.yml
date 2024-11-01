@@ -1,0 +1,54 @@
+name: CI/CD for Docker Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Update glibc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libc6
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DCUSER }} 
+          password: ${{ secrets.DCPASSWORD }} 
+
+      - name: Build Docker image
+        run: |
+          docker build -t woa2000/docker-web-app:latest .
+
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker push woa2000/docker-web-app:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up SSH key
+        run: |
+          echo "${{ secrets.EC2_KEY }}" > ec2_key.pem
+          chmod 600 ec2_key.pem
+      - name: Deploy to EC2
+        env:
+          HOST: 34.228.224.13
+          KEY: ${{ secrets.EC2_KEY }}
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ec2_key.pem ubuntu@$HOST << 'EOF'
+            docker pull woa2000/docker-web-app:latest
+            docker stop nginx-container || true
+            docker rm nginx-container || true
+            docker run -d --name nginx-container -p 80:80 woa2000/docker-web-app:latest
+          EOF
