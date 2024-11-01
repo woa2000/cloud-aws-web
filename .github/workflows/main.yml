@@ -43,7 +43,7 @@ jobs:
           chmod 600 ec2_key.pem
       - name: Deploy to EC2
         env:
-          HOST: ${{ secrets.EC2_HOST }}
+          HOST: 98.81.126.172
           KEY: ${{ secrets.EC2_KEY }}
         run: |
           ssh -o StrictHostKeyChecking=no -i ec2_key.pem ec2-user@$HOST << 'EOF'
