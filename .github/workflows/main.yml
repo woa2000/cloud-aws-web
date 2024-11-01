@@ -39,8 +39,34 @@ jobs:
     steps:
       - name: Deploy to EC2
         env:
-          HOST: ${{ secrets.EC2_HOST }}
-          KEY: ${{ secrets.EC2_KEY }}
+          HOST: 98.81.126.172
+          KEY:  -----BEGIN RSA PRIVATE KEY-----
+                MIIEpQIBAAKCAQEA3pQSnX2BWJLZV5bpa12WvZYXwAW/E0EihkWPYR3CkhJC7/sI
+                C0M2SPyc3GMnud6RK4pyUiFBiFKb8Azn69FUastTvxXO15UJDU/MKPr4JNRXXq2H
+                3Xnl5rYmBjiZoa9C8mKXB0J0dOnf08zwq646qxq5j+Xm3Kmqqy0IeoX2f+25pZ8/
+                lp5lCthLq4ElGAtWQbOw+TRrfuQjA04H4+H0z/xbS6YxmBhuPA0BfkvN8XC0pgMa
+                76NfcgP1oVZKLjOebEgb5XXljiTpJDBED5ByXnvUbsdBIOZD3KJGdisr6m9hMO5K
+                MUREKmTBwtFydcpdFR9DAwK5B1E7wIb9jwt+sQIDAQABAoIBAHjjfZTSVM1RvQAo
+                tBCfXT8NZUrjFBuWFfVNlIlPy5zglECZXI4ZbEOKCHxe0nXOX5SBdoQLEffDvnRL
+                3i8jm7EBTDQN2TEX/jmfrKhZXytJtUZ0A8YT7f0300EvvqmlcjwJtjO4MV5KpEn6
+                FoF4eN7z/fMdEB2rfUnJhMBfQDnMVeSKGsdEygNnnTZkb5cY1JUkL964/RvV25bt
+                AL+Aek7GUKqc95ACgcMD60EKpxIgBYhdngK0P7W3PCG8E7P1LbAGWKj5DxKFB0mC
+                RcQpoqbMqvJwF7ODjDBKII75Y7TYkrIKm3TAOAlQZEh49QE7ZifU/ZxHD59T7cYG
+                cMkh/30CgYEA8hOMP7KEklmNV8DOgO1iUClEqX+FmQ4OusC08Yqn345j/T1HAslV
+                7SR0Pp/2Co1wOWfknpyauGEkCWiV8vRC5nD6GRmQe2zyIGE7/KtO1VgWMxzcG8oy
+                MN5GFQguzy4Z+AWeiNo3QAePsHmoexgxuxK/9xTnB3RX7+2EHRVISpMCgYEA62Ft
+                alZinIct0he47zYoQpokunTk3wy03+wspfoNoWmba7xiqZq5mijpA9lD60WhGnFE
+                hYNxAX+nX3syaQTmZpLegDrvj+tqbE+6EI54d+AEoEE7lm3Ju0Q4nYDfVmmFzyl5
+                s+VEqZAntsSaJp9+akbRUqrHYd6NAVRjEHbAKCsCgYEApy6i5HbYoe4g9GLe+yF2
+                jWAC4ICGdq7Ds2xVSp900qsXGRTRzvXXVwCfG4UDukP2Jl8+/9+t5vqHlcvaC0Fw
+                Vo/d2anTI7qY+Y3NjPGObz73jfM3fCXHRgKsKehN053GJ4lR9LeoApt2O+25UtHh
+                vo3zb6PK7lYGSVgirqc9FusCgYEAm59kugO3Wwo9D0TD7tR9tds4IVcb4yUBiXMa
+                6fnzfR7XtVluWfiEchpORU8miq0UoOj2hteqpXUC8iv/3lNxCaxdE6bjsOHTER19
+                RWkM2STxqgq3HPQlhnzKecg04WsPHzKq1nfk977povtFd/fHmviLeP6UqG5+B70F
+                amM5FNUCgYEA4r2cxhVeqP/FG35XfjyDZAkF6ZJjloDw7b7WoSsh5t4lgEpe7A/H
+                +kUmh9nE3Pu5MW3NTTNXXKqP1EowR9RiybSZMqawYdUMhAVgyXXMBTkGrCZiW1XO
+                6aqFoqecSSzykqmth8Ykm43yjacsYJUGWg293tkkpk03zOHh2mE287k=
+                -----END RSA PRIVATE KEY-----
         run: |
           ssh -o StrictHostKeyChecking=no -i $KEY ec2-user@$HOST << 'EOF'
             docker pull woa2000/docker-web-app:latest
