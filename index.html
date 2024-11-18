@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,4 +7,62 @@
 <body>
     <h1>Bem-vindo à sua Aplicação Web Dockerizada! Versão Sexta</h1>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World Dinâmico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="hello">Hello World!</h1>
+        <button onclick="mudarCor()">Mudar Cor</button>
+    </div>
+
+    <script>
+        function mudarCor() {
+            const elemento = document.getElementById('hello');
+            const cor = Math.floor(Math.random()*16777215).toString(16);
+            elemento.style.color = "#" + cor;
+            elemento.style.transform = `rotate(${Math.random() * 20 - 10}deg) scale(${Math.random() * 0.5 + 1})`;
+        }
+    </script>
+</body>
 </html>
+
